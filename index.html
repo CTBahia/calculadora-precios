@@ -21,24 +21,24 @@
                     <h3>Costos Base</h3>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="costProduct">Costo del Producto ($)</label>
+                            <label for="costProduct">Costo del Producto (€)</label>
                             <input type="number" id="costProduct" value="30" step="0.01">
                             <div class="tooltip">Costo de fabricación o compra</div>
                         </div>
                         <div class="form-group">
-                            <label for="shipping">Costo de Envío ($)</label>
+                            <label for="shipping">Costo de Envío (€)</label>
                             <input type="number" id="shipping" value="5" step="0.01">
                             <div class="tooltip">Costo promedio de envío por unidad</div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="packaging">Empaque y Materiales ($)</label>
+                            <label for="packaging">Empaque y Materiales (€)</label>
                             <input type="number" id="packaging" value="2" step="0.01">
                             <div class="tooltip">Costo de empaque y materiales</div>
                         </div>
                         <div class="form-group">
-                            <label for="storage">Almacenamiento Mensual ($)</label>
+                            <label for="storage">Almacenamiento Mensual (€)</label>
                             <input type="number" id="storage" value="1" step="0.01">
                             <div class="tooltip">Costo de almacenamiento por unidad/mes</div>
                         </div>
@@ -77,7 +77,7 @@
                     <h3>Marketing y Adquisición</h3>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="advertisingCost">Costo de Publicidad por Venta ($)</label>
+                            <label for="advertisingCost">Costo de Publicidad por Venta (€)</label>
                             <input type="number" id="advertisingCost" value="15" step="0.01">
                             <div class="tooltip">CAC (Customer Acquisition Cost)</div>
                         </div>
@@ -109,7 +109,7 @@
                     <h3>Análisis de Mercado</h3>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="competitorPrice">Precio Competencia ($)</label>
+                            <label for="competitorPrice">Precio Competencia (€)</label>
                             <input type="number" id="competitorPrice" value="85" step="0.01">
                             <div class="tooltip">Precio promedio de la competencia</div>
                         </div>
@@ -131,20 +131,20 @@
                 
                 <div class="results-card">
                     <h3 style="text-align: center; margin-bottom: 10px;">💡 Precio Recomendado</h3>
-                    <div class="price-display" id="recommendedPrice">$0.00</div>
+                    <div class="price-display" id="recommendedPrice">€0.00</div>
                     
                     <div class="price-range">
                         <div class="price-option">
                             <h4>Mínimo</h4>
-                            <div class="price" id="minPrice">$0.00</div>
+                            <div class="price" id="minPrice">€0.00</div>
                         </div>
                         <div class="price-option">
                             <h4>Óptimo</h4>
-                            <div class="price" id="optimalPrice">$0.00</div>
+                            <div class="price" id="optimalPrice">€0.00</div>
                         </div>
                         <div class="price-option">
                             <h4>Máximo</h4>
-                            <div class="price" id="maxPrice">$0.00</div>
+                            <div class="price" id="maxPrice">€0.00</div>
                         </div>
                     </div>
                 </div>
@@ -284,8 +284,8 @@
             breakdown.forEach(item => {
                 html += `
                     <div class="breakdown-item">
-                        <span class="breakdown-label">${item.label}</span>
-                        <span class="breakdown-value">${formatCurrency(item.value)}</span>
+                        <span class="breakdown-label">€{item.label}</span>
+                        <span class="breakdown-value">€{formatCurrency(item.value)}</span>
                     </div>
                 `;
             });
@@ -310,27 +310,27 @@
             let html = `
                 <div class="metric">
                     <span>Margen de Ganancia</span>
-                    <span><strong>${profitMargin.toFixed(1)}%</strong></span>
+                    <span><strong>€{profitMargin.toFixed(1)}%</strong></span>
                 </div>
                 <div class="metric">
                     <span>ROI por Producto</span>
-                    <span><strong>${roi.toFixed(1)}%</strong></span>
+                    <span><strong>€{roi.toFixed(1)}%</strong></span>
                 </div>
                 <div class="metric">
                     <span>Ganancia por Unidad</span>
-                    <span><strong>${formatCurrency(netProfit)}</strong></span>
+                    <span><strong>€{formatCurrency(netProfit)}</strong></span>
                 </div>
                 <div class="metric">
                     <span>Ingresos Mensuales Proyectados</span>
-                    <span><strong>${formatCurrency(monthlyRevenue)}</strong></span>
+                    <span><strong>€{formatCurrency(monthlyRevenue)}</strong></span>
                 </div>
                 <div class="metric">
                     <span>Ganancia Mensual Proyectada</span>
-                    <span><strong>${formatCurrency(monthlyProfit)}</strong></span>
+                    <span><strong>€{formatCurrency(monthlyProfit)}</strong></span>
                 </div>
-                <div class="metric ${competitorDiff > 20 ? 'warning' : competitorDiff > 40 ? 'danger' : ''}">
+                <div class="metric €{competitorDiff > 20 ? 'warning' : competitorDiff > 40 ? 'danger' : ''}">
                     <span>vs. Competencia</span>
-                    <span><strong>${competitorDiff > 0 ? '+' : ''}${competitorDiff.toFixed(1)}%</strong></span>
+                    <span><strong>€{competitorDiff > 0 ? '+' : ''}€{competitorDiff.toFixed(1)}%</strong></span>
                 </div>
             `;
             
@@ -349,16 +349,16 @@
             let bgClass = 'recommendation';
             
             if (profitMargin < 15) {
-                recommendation = `⚠️ MARGEN BAJO: Tu margen de ganancia es del ${profitMargin.toFixed(1)}%. Considera reducir costos o aumentar el precio para mejorar la rentabilidad.`;
+                recommendation = `⚠️ MARGEN BAJO: Tu margen de ganancia es del €{profitMargin.toFixed(1)}%. Considera reducir costos o aumentar el precio para mejorar la rentabilidad.`;
                 bgClass = 'recommendation warning';
             } else if (profitMargin > 50) {
-                recommendation = `🎉 EXCELENTE MARGEN: Tienes un margen muy saludable del ${profitMargin.toFixed(1)}%. Podrías considerar ser más competitivo en precio si es necesario.`;
+                recommendation = `🎉 EXCELENTE MARGEN: Tienes un margen muy saludable del €{profitMargin.toFixed(1)}%. Podrías considerar ser más competitivo en precio si es necesario.`;
                 bgClass = 'recommendation';
             } else if (competitorDiff > 30) {
-                recommendation = `💰 PRECIO ALTO: Tu precio es ${competitorDiff.toFixed(1)}% más alto que la competencia. Asegúrate de que tu valor diferencial justifique esta diferencia.`;
+                recommendation = `💰 PRECIO ALTO: Tu precio es €{competitorDiff.toFixed(1)}% más alto que la competencia. Asegúrate de que tu valor diferencial justifique esta diferencia.`;
                 bgClass = 'recommendation warning';
             } else {
-                recommendation = `✅ PRECIO ÓPTIMO: Tu precio está bien balanceado con un margen del ${profitMargin.toFixed(1)}% y es ${Math.abs(competitorDiff).toFixed(1)}% ${competitorDiff > 0 ? 'más alto' : 'más bajo'} que la competencia.`;
+                recommendation = `✅ PRECIO ÓPTIMO: Tu precio está bien balanceado con un margen del €{profitMargin.toFixed(1)}% y es €{Math.abs(competitorDiff).toFixed(1)}% €{competitorDiff > 0 ? 'más alto' : 'más bajo'} que la competencia.`;
                 bgClass = 'recommendation';
             }
             
@@ -367,9 +367,9 @@
         }
         
         function formatCurrency(amount) {
-            return new Intl.NumberFormat('es-CO', {
+            return new Intl.NumberFormat('es-ES', {
                 style: 'currency',
-                currency: 'USD',
+                currency: 'EUR',
                 minimumFractionDigits: 2
             }).format(amount);
         }
