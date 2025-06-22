@@ -284,8 +284,8 @@
             breakdown.forEach(item => {
                 html += `
                     <div class="breakdown-item">
-                        <span class="breakdown-label">€{item.label}</span>
-                        <span class="breakdown-value">€{formatCurrency(item.value)}</span>
+                        <span class="breakdown-label">${item.label}</span>
+                        <span class="breakdown-value">${formatCurrency(item.value)}</span>
                     </div>
                 `;
             });
@@ -310,27 +310,27 @@
             let html = `
                 <div class="metric">
                     <span>Margen de Ganancia</span>
-                    <span><strong>€{profitMargin.toFixed(1)}%</strong></span>
+                    <span><strong>${profitMargin.toFixed(1)}%</strong></span>
                 </div>
                 <div class="metric">
                     <span>ROI por Producto</span>
-                    <span><strong>€{roi.toFixed(1)}%</strong></span>
+                    <span><strong>${roi.toFixed(1)}%</strong></span>
                 </div>
                 <div class="metric">
                     <span>Ganancia por Unidad</span>
-                    <span><strong>€{formatCurrency(netProfit)}</strong></span>
+                    <span><strong>${formatCurrency(netProfit)}</strong></span>
                 </div>
                 <div class="metric">
                     <span>Ingresos Mensuales Proyectados</span>
-                    <span><strong>€{formatCurrency(monthlyRevenue)}</strong></span>
+                    <span><strong>${formatCurrency(monthlyRevenue)}</strong></span>
                 </div>
                 <div class="metric">
                     <span>Ganancia Mensual Proyectada</span>
-                    <span><strong>€{formatCurrency(monthlyProfit)}</strong></span>
+                    <span><strong>${formatCurrency(monthlyProfit)}</strong></span>
                 </div>
-                <div class="metric €{competitorDiff > 20 ? 'warning' : competitorDiff > 40 ? 'danger' : ''}">
+                <div class="metric ${competitorDiff > 20 ? 'warning' : competitorDiff > 40 ? 'danger' : ''}">
                     <span>vs. Competencia</span>
-                    <span><strong>€{competitorDiff > 0 ? '+' : ''}€{competitorDiff.toFixed(1)}%</strong></span>
+                    <span><strong>${competitorDiff > 0 ? '+' : ''}${competitorDiff.toFixed(1)}%</strong></span>
                 </div>
             `;
             
@@ -349,16 +349,16 @@
             let bgClass = 'recommendation';
             
             if (profitMargin < 15) {
-                recommendation = `⚠️ MARGEN BAJO: Tu margen de ganancia es del €{profitMargin.toFixed(1)}%. Considera reducir costos o aumentar el precio para mejorar la rentabilidad.`;
+                recommendation = `⚠️ MARGEN BAJO: Tu margen de ganancia es del ${profitMargin.toFixed(1)}%. Considera reducir costos o aumentar el precio para mejorar la rentabilidad.`;
                 bgClass = 'recommendation warning';
             } else if (profitMargin > 50) {
-                recommendation = `🎉 EXCELENTE MARGEN: Tienes un margen muy saludable del €{profitMargin.toFixed(1)}%. Podrías considerar ser más competitivo en precio si es necesario.`;
+                recommendation = `🎉 EXCELENTE MARGEN: Tienes un margen muy saludable del ${profitMargin.toFixed(1)}%. Podrías considerar ser más competitivo en precio si es necesario.`;
                 bgClass = 'recommendation';
             } else if (competitorDiff > 30) {
-                recommendation = `💰 PRECIO ALTO: Tu precio es €{competitorDiff.toFixed(1)}% más alto que la competencia. Asegúrate de que tu valor diferencial justifique esta diferencia.`;
+                recommendation = `💰 PRECIO ALTO: Tu precio es ${competitorDiff.toFixed(1)}% más alto que la competencia. Asegúrate de que tu valor diferencial justifique esta diferencia.`;
                 bgClass = 'recommendation warning';
             } else {
-                recommendation = `✅ PRECIO ÓPTIMO: Tu precio está bien balanceado con un margen del €{profitMargin.toFixed(1)}% y es €{Math.abs(competitorDiff).toFixed(1)}% €{competitorDiff > 0 ? 'más alto' : 'más bajo'} que la competencia.`;
+                recommendation = `✅ PRECIO ÓPTIMO: Tu precio está bien balanceado con un margen del ${profitMargin.toFixed(1)}% y es ${Math.abs(competitorDiff).toFixed(1)}% ${competitorDiff > 0 ? 'más alto' : 'más bajo'} que la competencia.`;
                 bgClass = 'recommendation';
             }
             
