@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Avanzada de Precios - Ecommerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Calculadora Avanzada de Precios</h1>
+            <p>Herramienta completa para determinar el precio óptimo de tus productos</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title">📋 Configuración del Producto</h2>
+                
+                <div class="input-group">
+                    <h3>Costos Base</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="costProduct">Costo del Producto ($)</label>
+                            <input type="number" id="costProduct" value="30" step="0.01">
+                            <div class="tooltip">Costo de fabricación o compra</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipping">Costo de Envío ($)</label>
+                            <input type="number" id="shipping" value="5" step="0.01">
+                            <div class="tooltip">Costo promedio de envío por unidad</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="packaging">Empaque y Materiales ($)</label>
+                            <input type="number" id="packaging" value="2" step="0.01">
+                            <div class="tooltip">Costo de empaque y materiales</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="storage">Almacenamiento Mensual ($)</label>
+                            <input type="number" id="storage" value="1" step="0.01">
+                            <div class="tooltip">Costo de almacenamiento por unidad/mes</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <h3>Costos Operativos (%)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="paymentFees">Comisiones de Pago (%)</label>
+                            <input type="number" id="paymentFees" value="4" step="0.1">
+                            <div class="tooltip">PayPal, Stripe, MercadoPago, etc.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="platformFees">Comisiones de Plataforma (%)</label>
+                            <input type="number" id="platformFees" value="3" step="0.1">
+                            <div class="tooltip">Amazon, MercadoLibre, Shopify, etc.</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="returnRate">Tasa de Devoluciones (%)</label>
+                            <input type="number" id="returnRate" value="2" step="0.1">
+                            <div class="tooltip">% de productos devueltos</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="taxes">Impuestos (%)</label>
+                            <input type="number" id="taxes" value="19" step="0.1">
+                            <div class="tooltip">IVA u otros impuestos aplicables</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <h3>Marketing y Adquisición</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="advertisingCost">Costo de Publicidad por Venta ($)</label>
+                            <input type="number" id="advertisingCost" value="15" step="0.01">
+                            <div class="tooltip">CAC (Customer Acquisition Cost)</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="affiliateCommission">Comisión Afiliados (%)</label>
+                            <input type="number" id="affiliateCommission" value="5" step="0.1">
+                            <div class="tooltip">Comisiones a influencers/afiliados</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <h3>Objetivos de Negocio</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="targetMargin">Margen Objetivo (%)</label>
+                            <input type="number" id="targetMargin" value="40" step="1">
+                            <div class="tooltip">Margen de ganancia deseado</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyVolume">Volumen Mensual (unidades)</label>
+                            <input type="number" id="monthlyVolume" value="100" step="1">
+                            <div class="tooltip">Unidades esperadas a vender por mes</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <h3>Análisis de Mercado</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="competitorPrice">Precio Competencia ($)</label>
+                            <input type="number" id="competitorPrice" value="85" step="0.01">
+                            <div class="tooltip">Precio promedio de la competencia</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="positioning">Posicionamiento</label>
+                            <select id="positioning">
+                                <option value="economy">Económico (-15%)</option>
+                                <option value="standard" selected>Estándar (0%)</option>
+                                <option value="premium">Premium (+20%)</option>
+                                <option value="luxury">Lujo (+50%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results-section">
+                <h2 class="section-title">💰 Resultados del Análisis</h2>
+                
+                <div class="results-card">
+                    <h3 style="text-align: center; margin-bottom: 10px;">💡 Precio Recomendado</h3>
+                    <div class="price-display" id="recommendedPrice">$0.00</div>
+                    
+                    <div class="price-range">
+                        <div class="price-option">
+                            <h4>Mínimo</h4>
+                            <div class="price" id="minPrice">$0.00</div>
+                        </div>
+                        <div class="price-option">
+                            <h4>Óptimo</h4>
+                            <div class="price" id="optimalPrice">$0.00</div>
+                        </div>
+                        <div class="price-option">
+                            <h4>Máximo</h4>
+                            <div class="price" id="maxPrice">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="breakdown">
+                    <h3>📊 Desglose de Costos</h3>
+                    <div id="costBreakdown"></div>
+                </div>
+                
+                <div class="analysis">
+                    <h3>📈 Análisis Financiero</h3>
+                    <div id="financialAnalysis"></div>
+                    
+                    <div class="recommendation" id="recommendation">
+                        <h4>🎯 Recomendación</h4>
+                        <p id="recommendationText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales para almacenar los cálculos
+        let calculations = {};
+        
+        // Función principal de cálculo
+        function calculatePricing() {
+            // Obtener todos los valores de input
+            const inputs = {
+                costProduct: parseFloat(document.getElementById('costProduct').value) || 0,
+                shipping: parseFloat(document.getElementById('shipping').value) || 0,
+                packaging: parseFloat(document.getElementById('packaging').value) || 0,
+                storage: parseFloat(document.getElementById('storage').value) || 0,
+                paymentFees: parseFloat(document.getElementById('paymentFees').value) || 0,
+                platformFees: parseFloat(document.getElementById('platformFees').value) || 0,
+                returnRate: parseFloat(document.getElementById('returnRate').value) || 0,
+                taxes: parseFloat(document.getElementById('taxes').value) || 0,
+                advertisingCost: parseFloat(document.getElementById('advertisingCost').value) || 0,
+                affiliateCommission: parseFloat(document.getElementById('affiliateCommission').value) || 0,
+                targetMargin: parseFloat(document.getElementById('targetMargin').value) || 0,
+                monthlyVolume: parseFloat(document.getElementById('monthlyVolume').value) || 1,
+                competitorPrice: parseFloat(document.getElementById('competitorPrice').value) || 0,
+                positioning: document.getElementById('positioning').value
+            };
+            
+            // Calcular costos base
+            const baseCosts = inputs.costProduct + inputs.shipping + inputs.packaging + inputs.storage;
+            const advertisingCosts = inputs.advertisingCost;
+            
+            // Calcular precio base sin márgenes
+            let basePrice = baseCosts + advertisingCosts;
+            
+            // Aplicar costos porcentuales de forma iterativa
+            const totalPercentageCosts = inputs.paymentFees + inputs.platformFees + inputs.returnRate + inputs.affiliateCommission;
+            
+            // Precio ajustado por costos porcentuales
+            let adjustedPrice = basePrice / (1 - (totalPercentageCosts / 100));
+            
+            // Aplicar margen objetivo
+            let priceWithMargin = adjustedPrice / (1 - (inputs.targetMargin / 100));
+            
+            // Aplicar impuestos
+            let priceWithTaxes = priceWithMargin / (1 - (inputs.taxes / 100));
+            
+            // Calcular precios según posicionamiento
+            const positioningMultipliers = {
+                economy: 0.85,
+                standard: 1.0,
+                premium: 1.20,
+                luxury: 1.50
+            };
+            
+            const positioningMultiplier = positioningMultipliers[inputs.positioning];
+            
+            // Precios finales
+            const minPrice = priceWithTaxes * 0.9; // 10% menos
+            const optimalPrice = priceWithTaxes * positioningMultiplier;
+            const maxPrice = Math.max(optimalPrice * 1.2, inputs.competitorPrice * 1.1);
+            const recommendedPrice = optimalPrice;
+            
+            // Guardar cálculos
+            calculations = {
+                inputs,
+                baseCosts,
+                advertisingCosts,
+                totalPercentageCosts,
+                adjustedPrice,
+                priceWithMargin,
+                priceWithTaxes,
+                minPrice,
+                optimalPrice,
+                maxPrice,
+                recommendedPrice,
+                positioningMultiplier
+            };
+            
+            // Actualizar interfaz
+            updateResults();
+        }
+        
+        function updateResults() {
+            const calc = calculations;
+            
+            // Actualizar precios principales
+            document.getElementById('recommendedPrice').textContent = formatCurrency(calc.recommendedPrice);
+            document.getElementById('minPrice').textContent = formatCurrency(calc.minPrice);
+            document.getElementById('optimalPrice').textContent = formatCurrency(calc.optimalPrice);
+            document.getElementById('maxPrice').textContent = formatCurrency(calc.maxPrice);
+            
+            // Actualizar desglose de costos
+            updateCostBreakdown();
+            
+            // Actualizar análisis financiero
+            updateFinancialAnalysis();
+            
+            // Actualizar recomendación
+            updateRecommendation();
+        }
+        
+        function updateCostBreakdown() {
+            const calc = calculations;
+            const breakdown = [
+                { label: 'Costo del Producto', value: calc.inputs.costProduct },
+                { label: 'Envío y Logística', value: calc.inputs.shipping + calc.inputs.storage },
+                { label: 'Empaque', value: calc.inputs.packaging },
+                { label: 'Marketing/Publicidad', value: calc.advertisingCosts },
+                { label: 'Comisiones de Pago', value: calc.recommendedPrice * (calc.inputs.paymentFees / 100) },
+                { label: 'Comisiones de Plataforma', value: calc.recommendedPrice * (calc.inputs.platformFees / 100) },
+                { label: 'Devoluciones', value: calc.recommendedPrice * (calc.inputs.returnRate / 100) },
+                { label: 'Comisiones Afiliados', value: calc.recommendedPrice * (calc.inputs.affiliateCommission / 100) },
+                { label: 'Impuestos', value: calc.recommendedPrice * (calc.inputs.taxes / 100) },
+                { label: 'Ganancia Neta', value: calc.recommendedPrice - (calc.baseCosts + calc.advertisingCosts + calc.recommendedPrice * (calc.totalPercentageCosts + calc.inputs.taxes) / 100) }
+            ];
+            
+            let html = '';
+            breakdown.forEach(item => {
+                html += `
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">${item.label}</span>
+                        <span class="breakdown-value">${formatCurrency(item.value)}</span>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('costBreakdown').innerHTML = html;
+        }
+        
+        function updateFinancialAnalysis() {
+            const calc = calculations;
+            
+            // Calcular métricas
+            const totalCosts = calc.baseCosts + calc.advertisingCosts + 
+                             calc.recommendedPrice * (calc.totalPercentageCosts + calc.inputs.taxes) / 100;
+            const netProfit = calc.recommendedPrice - totalCosts;
+            const profitMargin = (netProfit / calc.recommendedPrice) * 100;
+            const roi = (netProfit / totalCosts) * 100;
+            const monthlyRevenue = calc.recommendedPrice * calc.inputs.monthlyVolume;
+            const monthlyProfit = netProfit * calc.inputs.monthlyVolume;
+            
+            const competitorDiff = ((calc.recommendedPrice - calc.inputs.competitorPrice) / calc.inputs.competitorPrice) * 100;
+            
+            let html = `
+                <div class="metric">
+                    <span>Margen de Ganancia</span>
+                    <span><strong>${profitMargin.toFixed(1)}%</strong></span>
+                </div>
+                <div class="metric">
+                    <span>ROI por Producto</span>
+                    <span><strong>${roi.toFixed(1)}%</strong></span>
+                </div>
+                <div class="metric">
+                    <span>Ganancia por Unidad</span>
+                    <span><strong>${formatCurrency(netProfit)}</strong></span>
+                </div>
+                <div class="metric">
+                    <span>Ingresos Mensuales Proyectados</span>
+                    <span><strong>${formatCurrency(monthlyRevenue)}</strong></span>
+                </div>
+                <div class="metric">
+                    <span>Ganancia Mensual Proyectada</span>
+                    <span><strong>${formatCurrency(monthlyProfit)}</strong></span>
+                </div>
+                <div class="metric ${competitorDiff > 20 ? 'warning' : competitorDiff > 40 ? 'danger' : ''}">
+                    <span>vs. Competencia</span>
+                    <span><strong>${competitorDiff > 0 ? '+' : ''}${competitorDiff.toFixed(1)}%</strong></span>
+                </div>
+            `;
+            
+            document.getElementById('financialAnalysis').innerHTML = html;
+        }
+        
+        function updateRecommendation() {
+            const calc = calculations;
+            const totalCosts = calc.baseCosts + calc.advertisingCosts + 
+                             calc.recommendedPrice * (calc.totalPercentageCosts + calc.inputs.taxes) / 100;
+            const netProfit = calc.recommendedPrice - totalCosts;
+            const profitMargin = (netProfit / calc.recommendedPrice) * 100;
+            const competitorDiff = ((calc.recommendedPrice - calc.inputs.competitorPrice) / calc.inputs.competitorPrice) * 100;
+            
+            let recommendation = '';
+            let bgClass = 'recommendation';
+            
+            if (profitMargin < 15) {
+                recommendation = `⚠️ MARGEN BAJO: Tu margen de ganancia es del ${profitMargin.toFixed(1)}%. Considera reducir costos o aumentar el precio para mejorar la rentabilidad.`;
+                bgClass = 'recommendation warning';
+            } else if (profitMargin > 50) {
+                recommendation = `🎉 EXCELENTE MARGEN: Tienes un margen muy saludable del ${profitMargin.toFixed(1)}%. Podrías considerar ser más competitivo en precio si es necesario.`;
+                bgClass = 'recommendation';
+            } else if (competitorDiff > 30) {
+                recommendation = `💰 PRECIO ALTO: Tu precio es ${competitorDiff.toFixed(1)}% más alto que la competencia. Asegúrate de que tu valor diferencial justifique esta diferencia.`;
+                bgClass = 'recommendation warning';
+            } else {
+                recommendation = `✅ PRECIO ÓPTIMO: Tu precio está bien balanceado con un margen del ${profitMargin.toFixed(1)}% y es ${Math.abs(competitorDiff).toFixed(1)}% ${competitorDiff > 0 ? 'más alto' : 'más bajo'} que la competencia.`;
+                bgClass = 'recommendation';
+            }
+            
+            document.getElementById('recommendation').className = bgClass;
+            document.getElementById('recommendationText').textContent = recommendation;
+        }
+        
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            }).format(amount);
+        }
+        
+        // Event listeners para actualizar en tiempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', calculatePricing);
+            });
+            
+            // Calcular inicialmente
+            calculatePricing();
+        });
+    </script>
+</body>
+</html>
